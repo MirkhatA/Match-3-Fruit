@@ -129,6 +129,7 @@ public class Dot : MonoBehaviour
     }
 
     void MovePieces() {
+
         if (swipingAngle > -45 && swipingAngle <= 45 && column < board.width - 1) { // Right Swipe
             otherDot = board.allDots[column + 1, row];
             previousRow = row;
