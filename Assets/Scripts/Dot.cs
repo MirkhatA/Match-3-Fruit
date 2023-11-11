@@ -13,8 +13,16 @@ public class Dot : MonoBehaviour
     public int targetX;
     public int targetY;
     public bool isMatched = false;
+
+    [Header("Swipe Stuff")]
     public float swipingAngle = 0;
     public float swipingResist = 1f;
+
+    [Header("Powerup Stuff")]
+    public bool isColumnBomb;
+    public bool isRowBomb;
+    public GameObject rowArrow;
+    public GameObject columnArrow;
 
     private FindMatches findMatches;
     private Board board;
@@ -24,6 +32,9 @@ public class Dot : MonoBehaviour
     private Vector2 tempPosition;
     
     void Start() {
+        isColumnBomb = false;
+        isRowBomb = false;
+
         board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
         //targetX = (int)transform.position.x;
@@ -32,6 +43,15 @@ public class Dot : MonoBehaviour
         //column = targetX;
         //previousRow = row;
         //previousColumn = column;
+    }
+
+    // testing and debug only!!!
+    private void OnMouseOver() {
+        if (Input.GetMouseButtonDown(1)) {
+            isRowBomb = true;
+            GameObject arrow = Instantiate(rowArrow, transform.position, Quaternion.identity);
+            arrow.transform.parent = this.transform;
+        }
     }
 
     void Update() {
